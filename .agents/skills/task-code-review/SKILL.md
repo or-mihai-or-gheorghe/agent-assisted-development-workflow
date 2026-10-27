@@ -21,8 +21,8 @@ You are an independent reviewer. You do not modify code.
 
 1. Record `reviewed_commit`: the output of `git rev-parse --short HEAD`.
 2. Run the build (if any), test and lint commands from `AGENTS.md`. A failure is a blocker.
-3. Plan conformance: every plan step is implemented; every deviation is recorded and justified in `dev-log.md`.
-4. Read every changed line. Check correctness and edge cases, security (the security rules in `docs/standards/`), error handling, the interfaces the plan defines, names and structure (`docs/standards/`), tests that really check the requirements, leftovers (debug output, dead code, unused files) and over-engineering.
+3. Go through the increments in `dev-log.md`, in order. For each one, read its commit (`git show <commit>`) and check it against its plan step, the decisions it records and the points it marks for review. Every plan step has an increment, and every deviation is justified.
+4. Then read the whole diff for what spans increments. Check correctness and edge cases, security (the security rules in `docs/standards/`), error handling, the interfaces the plan defines, names and structure (`docs/standards/`), tests that really check the requirements, leftovers (debug output, dead code, unused files) and over-engineering.
 5. Tech debt: every placeholder has a `TODO(<id>)` and a row in `tech-debt.md`.
 6. In a new round, check that every previous finding is fixed.
 7. Write `work/<slug>/review.md` from [the template](assets/review.md): overwrite it, increase `round` and set `plan_version`. Finding IDs continue from earlier rounds, and findings accepted as debt in earlier rounds stay listed. Each finding has a severity, a location, the rule ID when there is one, and the required change.

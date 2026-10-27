@@ -8,17 +8,16 @@ status: in-progress      # in-progress | done
 
 # Development log: <slug>
 
-## Steps
+One entry per increment, in commit order: a plan step, or a fix in a fix round. The code review reads the increments one by one, so each entry says what the reviewer needs to know about its commit.
 
-| Plan step | Status | Commit | Notes |
-| --- | --- | --- | --- |
-| 1. <name> | done | `<sha>` | |
+## Increment 1: <plan step "1. <name>", or "round <n>: <finding ID>">
 
-## Deviations from the plan
-
-| What | Why | Impact |
-| --- | --- | --- |
-| None | | |
+- Commit: `<sha>` <commit message>
+- Changes: `<file>`: <what changed>; one line per file
+- Decisions: <choices made while implementing that the plan did not fix, with the reason; or none>
+- Tests: <test IDs added or changed, and what each one checks>
+- Review focus: <where to look closely: security, error handling, edge cases, non-obvious logic>
+- Deviation from the plan: <what, why, impact; or none>
 
 ## Commands
 
@@ -27,16 +26,6 @@ status: in-progress      # in-progress | done
 | test: `<command>` | <n> passed, <n> failed |
 | lint: `<command>` | <no problems / n problems> |
 
-## Fix rounds
+## Notes for testing
 
-<From round 2: one table per round.>
-
-### Round <n>: <review round n / test report round n>
-
-| Finding | Fix | Commit |
-| --- | --- | --- |
-| F1 | | |
-
-## Notes for review and testing
-
-- <what the reviewer and the tester should know: setup, data, limitations>
+- <what the tester should know: setup, data, how to start and use the software, limitations>

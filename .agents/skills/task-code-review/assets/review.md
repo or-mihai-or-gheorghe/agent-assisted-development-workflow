@@ -14,11 +14,11 @@ verdict: changes-requested   # approved | changes-requested
 - `git diff <base>...<sha>`: <n> files, +<n> / -<n> lines
 - build: <result or none>; test: <n> passed, <n> failed; lint: <no problems / n problems>
 
-## Plan conformance
+## Increments
 
-| Plan step | Implemented | Notes |
-| --- | --- | --- |
-| 1. <name> | yes / partly / no | |
+| Increment | Commit | Plan step or finding | Notes |
+| --- | --- | --- | --- |
+| 1 | `<sha>` | 1. <name> | <conforms / see F1> |
 
 ## Findings
 
