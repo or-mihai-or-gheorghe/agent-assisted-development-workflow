@@ -1,26 +1,29 @@
 # AGENTS.md
 
-Instructions for every coding agent working in this repository (Antigravity CLI `agy`, Claude Code, Codex and others).
+Instructions for the coding agent working in this repository, for example Antigravity CLI (`agy`).
 
 ## Project
 
-<What the software does, for whom, and its main technologies, in two or three lines.> Read `README.md` and `docs/ARCHITECTURE.md` first.
+Task API: a REST backend in Node.js and Express 5 with user registration, JWT authentication, authorization and CRUD over tasks. Data lives in a local JSON file first and in Cloud Firestore later. Read `README.md` and `docs/ARCHITECTURE.md` first.
 
-All code, comments, documents and commit messages are in <natural language, for example English>.
+In the API, a task is a user's to-do (`/tasks`); in the workflow below, a task is a change to this repository.
+
+All code, comments, documents and commit messages are in English.
 
 ## Commands
 
-The workflow skills use these commands by name. Run install first in a new checkout and whenever the dependencies change.
+The workflow skills use these commands by name. Run install first in a new checkout and whenever the dependencies change. The first roadmap item creates `package.json` with these scripts.
 
 | Name | Command | Notes |
 | --- | --- | --- |
-| install | `<command>` | installs the dependencies at the versions the project pins |
-| build | `<command or none>` | builds the software, when it has a build step |
-| test | `<command>` | runs all automated tests, without interaction, and exits |
-| lint | `<command>` | static checks; must report nothing |
-| start | `<command or none>` | starts the software for manual checks; none for a library |
+| install | `npm ci` | installs the versions in `package-lock.json`; `npm install <package>@<version>` adds a dependency and creates the lock file if it is missing |
+| build | none | plain JavaScript, no build step |
+| test | `npm test` | runs all tests (`node:test`) and exits |
+| lint | `npm run lint` | ESLint; must report nothing |
+| start | `npm start` | starts the API; the port comes from `PORT` |
+| dev | `npm run dev` | like start, with `.env` loaded and a restart on every change |
 
-<Where the configuration comes from, and what is never committed: secrets, generated files, dependencies.>
+Configuration comes from environment variables, in development from `.env` (`node --env-file=.env`). Never commit `.env`, keys or `node_modules`.
 
 ## Git
 
@@ -73,8 +76,8 @@ Loops: critique `changes-requested` goes back to task-planning; review `changes-
 
 A task is one logical increment: testable on its own, and every existing test still passes.
 
-- At most about 300 changed lines of production code (tests and documents not counted) and 10 files.
-- At most one new runtime dependency.
+- At most about 300 changed lines of production code and 10 files; tests, documents and generated files such as lock files do not count.
+- At most one new runtime dependency; development tools, such as a linter, do not count.
 - Tests are essential, not exhaustive: one test for the success path of each requirement, plus one for each error case that protects security or data. A requirement usually needs one to three tests.
 
 Larger work is split. A part that is not implemented yet is replaced by an explicit placeholder (a stub, a fake adapter, seeded dummy data, a monkey patch in tests), marked in code with `TODO(TD-<slug>-<n>)` and recorded in `work/<slug>/tech-debt.md`.
